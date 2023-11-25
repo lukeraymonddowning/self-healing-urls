@@ -11,7 +11,7 @@ abstract class TestCase extends BaseTestCase
     {
         parent::setUp();
 
-        $this->loadMigrationsFrom(__DIR__ . '/fixtures/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/fixtures/migrations');
     }
 
     protected function defineEnvironment($app): void

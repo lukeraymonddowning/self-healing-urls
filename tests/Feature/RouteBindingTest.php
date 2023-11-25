@@ -35,7 +35,7 @@ it('redirects to the correct URL if the slug is malformed', function () {
     Route::get('posts/{post}', function (Post $post) {
     })->middleware('web')->name('posts.show');
 
-    $this->get('/posts/this-is-bogus-' . $post->getKey())
+    $this->get('/posts/this-is-bogus-'.$post->getKey())
         ->assertRedirect(route('posts.show', $post));
 });
 
@@ -45,6 +45,6 @@ it('can redirect to non-get route', function () {
     Route::put('posts/{post}', function (Post $post) {
     })->middleware('web')->name('posts.update');
 
-    $this->put('/posts/this-is-bogus-' . $post->getKey())
+    $this->put('/posts/this-is-bogus-'.$post->getKey())
         ->assertRedirect(route('posts.update', $post));
 });

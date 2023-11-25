@@ -1,6 +1,5 @@
 <?php
 
-use Lukeraymonddowning\SelfHealingUrls\SlugSanitizers\BaseSlugSanitizer;
 use Lukeraymonddowning\SelfHealingUrls\SlugSanitizers\KebabSlugSanitizer;
 
 it('replaces spaces with hyphens', function () {

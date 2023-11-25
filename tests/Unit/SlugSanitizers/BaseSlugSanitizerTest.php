@@ -27,5 +27,5 @@ it('removes anything that isnt alphanumeric, a dash, underscore or space', funct
     '{',
     '}',
     '%',
-    '.'
+    '.',
 ]);
