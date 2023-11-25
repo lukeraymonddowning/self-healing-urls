@@ -16,13 +16,13 @@ class NamedRouteRerouter implements Rerouter
         $route = $this->request->route();
 
         $originalParameters = $route->originalParameters();
-        $parameterName = collect($route->originalParameters())
+        $parameterName = collect($originalParameters)
             ->search(fn ($value) => $parameterValue === $value);
 
-        $url = route($route->getName(), [
-            ...$route->originalParameters(),
-            $parameterName => $actualValue,
-        ]);
+        $url = route(
+            $route->getName(),
+            [...$originalParameters, $parameterName => $actualValue]
+        );
 
         abort(redirect($url, status: 301));
     }
