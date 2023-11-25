@@ -1,0 +1,32 @@
+{
+    "name": "lukeraymonddowning/self-healing-urls",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Lukeraymonddowning\\SelfHealingUrls\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "lukeraymonddowning",
+            "email": "lukeraymonddowning@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.15",
+        "pestphp/pest": "^2.25"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
