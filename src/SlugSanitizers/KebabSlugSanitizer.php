@@ -15,6 +15,8 @@ class KebabSlugSanitizer implements SlugSanitizer
     {
         return str($this->decoratedSanitizer->sanitize($slug))
             ->kebab()
-            ->replaceMatches('/[-]{2,}/', '-');
+            ->replaceMatches('/[-]{2,}/', '-')
+            ->replaceStart('-', '')
+            ->replaceEnd('-', '');
     }
 }
