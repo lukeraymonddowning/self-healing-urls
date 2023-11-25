@@ -2,7 +2,7 @@
 
 namespace Lukeraymonddowning\SelfHealingUrls\Concerns;
 
-use Illuminate\Support\Str;
+use Lukeraymonddowning\SelfHealingUrls\Contracts\IdentifierHandler;
 use Lukeraymonddowning\SelfHealingUrls\Contracts\Rerouter;
 use Lukeraymonddowning\SelfHealingUrls\Contracts\SlugSanitizer;
 
@@ -11,14 +11,14 @@ trait HasSelfHealingUrls
     public function getRouteKey()
     {
         $actualKey = parent::getRouteKey();
-        $selfHealingUrl = "{$this->getSlug($this)}-{$actualKey}";
+        $selfHealingUrl = app(IdentifierHandler::class)->joinToSlug($this->getSlug($this), $actualKey);
 
         return app(SlugSanitizer::class)->sanitize($selfHealingUrl);
     }
 
     public function resolveRouteBinding($value, $field = null)
     {
-        $model = parent::resolveRouteBinding(Str::afterLast($value, '-'), $field);
+        $model = parent::resolveRouteBinding(app(IdentifierHandler::class)->separateFromSlug($value), $field);
 
         if ($model === null) {
             return null;
