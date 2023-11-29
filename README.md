@@ -9,7 +9,9 @@ models can include an SEO friendly slug whilst not breaking should the slug alte
 
 The package can be installed via Composer:
 
-`composer require lukeraymonddowning/self-healing-urls`
+```
+composer require lukeraymonddowning/self-healing-urls
+```
 
 Once installed, add the `HasSelfHealingUrls` trait to any Eloquent model:
 
