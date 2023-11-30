@@ -13,10 +13,6 @@ class KebabSlugSanitizer implements SlugSanitizer
 
     public function sanitize(string $slug): string
     {
-        return str($this->decoratedSanitizer->sanitize($slug))
-            ->kebab()
-            ->replaceMatches('/[-]{2,}/', '-')
-            ->replaceStart('-', '')
-            ->replaceEnd('-', '');
+        return str($this->decoratedSanitizer->sanitize($slug))->slug();
     }
 }
