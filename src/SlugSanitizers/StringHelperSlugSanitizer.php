@@ -7,7 +7,7 @@ use Lukeraymonddowning\SelfHealingUrls\Contracts\SlugSanitizer;
 class StringHelperSlugSanitizer implements SlugSanitizer
 {
     public function __construct(
-        private string $separator = "-",
+        private string $separator = '-',
         private SlugSanitizer $decoratedSanitizer = new BaseSlugSanitizer(),
     ) {
     }
