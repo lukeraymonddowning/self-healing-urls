@@ -85,6 +85,36 @@ class AppServiceProvider extends ServiceProvider
 }
 ```
 
+## Working with Filament v3
+
+Filament PHP (v3) uses the `Model::getKeyRouteName()` to determine the unique identifier of the resource when editing, and it can lead to a 404 error if it cannot retrieve it correctly.
+
+You can define the identifier used for the resource in the Resource model, like so:
+
+```php
+class PostsResource extends Resource
+{
+    // ...
+
+    // Define the routeKeyName identifier
+    protected static ?string $recordRouteKeyName = 'id';
+
+    // ...
+
+    // Define the column field used to identify the resource in the edit route
+    public static function getPages(): array
+    {
+        return [
+            'index' => Pages\ListCategories::route('/'),
+            'create' => Pages\CreateCategories::route('/create'),
+            'edit' => Pages\EditCategories::route('/{record:id}/edit'),
+        ];
+    }
+}
+```
+
+
+
 ## Attributions
 
 Without [Aaron's video](https://www.youtube.com/watch?v=a6lnfyES-LA&t=554s), I wouldn't have even thought about this, so props to him. Go watch the video.
