@@ -21,7 +21,11 @@ class NamedRouteRerouter implements Rerouter
 
         $url = route(
             $route->getName(),
-            [...$originalParameters, $parameterName => $actualValue]
+            [
+                ...$originalParameters,
+                $parameterName => $actualValue,
+                ...$this->request->query(),
+            ]
         );
 
         abort(redirect($url, status: 301));

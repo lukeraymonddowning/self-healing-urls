@@ -39,6 +39,20 @@ it('redirects to the correct URL if the slug is malformed', function () {
         ->assertRedirect(route('posts.show', $post));
 });
 
+it('redirects to the correct URL preserving query string if the slug is malformed', function () {
+    $post = PostFactory::new()->create();
+
+    Post::query()->paginate()->withQueryString();
+
+    Route::get('posts/{post}', function (Post $post) {
+    })->middleware('web')->name('posts.show');
+
+    $queryString = '?test=string';
+
+    $this->get('/posts/this-is-bogus-'.$post->getKey().$queryString)
+        ->assertRedirect(route('posts.show', $post).$queryString);
+});
+
 it('can redirect to non-get route', function () {
     $post = PostFactory::new()->create();
 
