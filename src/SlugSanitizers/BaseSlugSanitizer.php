@@ -10,6 +10,7 @@ class BaseSlugSanitizer implements SlugSanitizer
     {
         return str($slug)
             ->lower()
+            ->ascii()
             ->replaceMatches('/[^a-z0-9-_ ]/', '');
     }
 }

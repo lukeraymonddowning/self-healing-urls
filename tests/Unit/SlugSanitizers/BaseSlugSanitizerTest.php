@@ -3,15 +3,28 @@
 use Lukeraymonddowning\SelfHealingUrls\SlugSanitizers\BaseSlugSanitizer;
 
 it('makes the slug lowercase', function () {
-    $sanitzer = new BaseSlugSanitizer();
-    $result = $sanitzer->sanitize('AN-UPPER-CASE-STRING');
+    $sanitizer = new BaseSlugSanitizer();
+    $result = $sanitizer->sanitize('AN-UPPER-CASE-STRING');
 
     expect($result)->toBe('an-upper-case-string');
 });
 
+it('converts ascii to alphabetic', function (string $slug, string $expected) {
+    $sanitizer = new BaseSlugSanitizer();
+    $result = $sanitizer->sanitize($slug);
+
+    expect($result)->toBe($expected);
+})->with([
+    ['Köttfärssås-är-gott', 'kottfarssas-ar-gott'],
+    ['Fußgängerübergänge', 'fussgangerubergange'],
+    ['Æ-æ-Ø-ø-Å-å', 'ae-ae-o-o-a-a'],
+    ["Mirëdita-Ç'kemi", 'miredita-ckemi'],
+    ["déjà-vu", 'deja-vu'],
+]);
+
 it('removes anything that isnt alphanumeric, a dash, underscore or space', function ($badCharacter) {
-    $sanitzer = new BaseSlugSanitizer();
-    $result = $sanitzer->sanitize($badCharacter);
+    $sanitizer = new BaseSlugSanitizer();
+    $result = $sanitizer->sanitize($badCharacter);
 
     expect($result)->toBe('');
 })->with([
