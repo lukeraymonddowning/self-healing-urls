@@ -2,6 +2,27 @@
 
 use Lukeraymonddowning\SelfHealingUrls\SlugSanitizers\BaseSlugSanitizer;
 
+it('replaces spaces with hyphens', function () {
+    $sanitizer = new BaseSlugSanitizer();
+    $result = $sanitizer->sanitize('what are you doing?');
+
+    expect($result)->toBe('what-are-you-doing');
+});
+
+it('removes multiple hyphens', function () {
+    $sanitizer = new BaseSlugSanitizer();
+    $result = $sanitizer->sanitize('what--are------you-doing');
+
+    expect($result)->toBe('what-are-you-doing');
+});
+
+it('removes hyphens from the start and end', function () {
+    $sanitizer = new BaseSlugSanitizer();
+    $result = $sanitizer->sanitize('-what-are-you-doing-');
+
+    expect($result)->toBe('what-are-you-doing');
+});
+
 it('makes the slug lowercase', function () {
     $sanitizer = new BaseSlugSanitizer();
     $result = $sanitizer->sanitize('AN-UPPER-CASE-STRING');
