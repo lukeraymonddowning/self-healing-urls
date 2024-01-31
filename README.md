@@ -56,19 +56,19 @@ If you need to customize how a slug is joined to a model identifier (which by de
 you can create your own class implementing `IdentifierHandler` and register it in the register
 method of your `AppServiceProvider`.
 
-Here is an example using an `_` instead of a hyphen:
+Here is an example using an `_` instead of a hyphen, with the identifier showing before the slug:
 
 ```php
 class UnderscoreIdentifierHandler implements IdentifierHandler
 {
     public function joinToSlug(string $slug, string|int $identifier): string
     {
-        return "{$slug}_{$identifier}";
+        return "{$identifier}_{$slug}";
     }
 
     public function separateFromSlug(string $value): string
     {
-        return Str::afterLast($value, '_');
+        return Str::before($value, '_');
     }
 }
 ```
@@ -80,8 +80,9 @@ class AppServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
+        $this->app->singleton(SlugSanitizer::class, fn () => new BaseSlugSanitizer(separator: '_'));
         $this->app->singleton(IdentifierHandler::class, UnderscoreIdentifierHandler::class);
-    }
+    }    
 }
 ```
 

@@ -30,6 +30,13 @@ it('makes the slug lowercase', function () {
     expect($result)->toBe('an-upper-case-string');
 });
 
+it('accepts custom slug separators', function () {
+    $sanitizer = new BaseSlugSanitizer(separator: '_');
+    $result = $sanitizer->sanitize('what are you doing');
+
+    expect($result)->toBe('what_are_you_doing');
+});
+
 it('converts ascii to alphabetic', function (string $slug, string $expected) {
     $sanitizer = new BaseSlugSanitizer();
     $result = $sanitizer->sanitize($slug);
@@ -40,7 +47,7 @@ it('converts ascii to alphabetic', function (string $slug, string $expected) {
     ['Fußgängerübergänge', 'fussgangerubergange'],
     ['Æ-æ-Ø-ø-Å-å', 'ae-ae-o-o-a-a'],
     ["Mirëdita-Ç'kemi", 'miredita-ckemi'],
-    ["déjà-vu", 'deja-vu'],
+    ['déjà-vu', 'deja-vu'],
 ]);
 
 it('removes anything that isnt alphanumeric, a dash, underscore or space', function ($badCharacter) {
