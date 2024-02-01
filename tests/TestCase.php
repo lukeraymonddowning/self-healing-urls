@@ -4,6 +4,7 @@ namespace Tests;
 
 use Lukeraymonddowning\SelfHealingUrls\Providers\SelfHealingUrlsServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
+use Tests\Fixtures\Providers\CustomServiceProvider;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -24,6 +25,7 @@ abstract class TestCase extends BaseTestCase
     {
         return [
             SelfHealingUrlsServiceProvider::class,
+            CustomServiceProvider::class,
         ];
     }
 }
