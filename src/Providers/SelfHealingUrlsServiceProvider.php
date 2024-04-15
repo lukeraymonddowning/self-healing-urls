@@ -15,9 +15,9 @@ class SelfHealingUrlsServiceProvider extends ServiceProvider implements Deferrab
 {
     public function register(): void
     {
-        $this->app->singleton(SlugSanitizer::class, fn () => new StringHelperSlugSanitizer());
-        $this->app->singleton(Rerouter::class, NamedRouteRerouter::class);
-        $this->app->singleton(IdentifierHandler::class, HyphenIdentifierHandler::class);
+        $this->app->singletonIf(SlugSanitizer::class, fn () => new StringHelperSlugSanitizer());
+        $this->app->singletonIf(Rerouter::class, NamedRouteRerouter::class);
+        $this->app->singletonIf(IdentifierHandler::class, HyphenIdentifierHandler::class);
     }
 
     public function provides(): array
