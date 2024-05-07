@@ -11,21 +11,12 @@ use Lukeraymonddowning\SelfHealingUrls\IdentifierHandlers\HyphenIdentifierHandle
 use Lukeraymonddowning\SelfHealingUrls\Rerouters\NamedRouteRerouter;
 use Lukeraymonddowning\SelfHealingUrls\SlugSanitizers\StringHelperSlugSanitizer;
 
-class SelfHealingUrlsServiceProvider extends ServiceProvider implements DeferrableProvider
+class SelfHealingUrlsServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->app->singletonIf(SlugSanitizer::class, fn () => new StringHelperSlugSanitizer());
-        $this->app->singletonIf(Rerouter::class, NamedRouteRerouter::class);
-        $this->app->singletonIf(IdentifierHandler::class, HyphenIdentifierHandler::class);
-    }
-
-    public function provides(): array
-    {
-        return [
-            SlugSanitizer::class,
-            Rerouter::class,
-            IdentifierHandler::class,
-        ];
+        $this->app->singleton(SlugSanitizer::class, fn () => new StringHelperSlugSanitizer());
+        $this->app->singleton(Rerouter::class, NamedRouteRerouter::class);
+        $this->app->singleton(IdentifierHandler::class, HyphenIdentifierHandler::class);
     }
 }

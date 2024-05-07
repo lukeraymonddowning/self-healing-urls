@@ -5,7 +5,6 @@ use Tests\Fixtures\Models\Post;
 use Tests\Fixtures\Models\PostFactory;
 
 it('can bind a model from a self-healing URL', function () {
-    $this->withoutExceptionHandling();
     $originalPost = PostFactory::new()->create();
 
     Route::get('posts/{post}', function (Post $post) use ($originalPost) {
