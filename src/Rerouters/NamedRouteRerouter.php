@@ -28,6 +28,6 @@ class NamedRouteRerouter implements Rerouter
             ]
         );
 
-        abort(redirect($url, status: 301));
+        abort(redirect($url, status: 307));
     }
 }
