@@ -1,5 +1,9 @@
 # Self Healing URLs
 
+Self Healing URLs package was originally created by [Luke Downing](https://github.com/lukeraymonddowning) and is a fork of [this package](https://github.com/lukeraymonddowning/self-healing-urls).
+
+It [appears that Luke is no longer maintaining the package](https://x.com/LukeDowning19/status/1878863109517156732), so I forked it for use with Laravel 12.
+
 Self Healing URLs is a simple Laravel package inspired by [this video from Aaron Francis](https://www.youtube.com/watch?v=a6lnfyES-LA&t=554s).
 
 It allows you to mark Eloquent models as self-healing so that the URLs generated for said
@@ -87,5 +91,5 @@ class AppServiceProvider extends ServiceProvider
 
 ## Attributions
 
-Without [Aaron's video](https://www.youtube.com/watch?v=a6lnfyES-LA&t=554s), I wouldn't have even thought about this, so props to him. Go watch the video.
+Without [Aaron's video](https://www.youtube.com/watch?v=a6lnfyES-LA&t=554s), Luke wouldn't have even thought about this, so props to him. Go watch the video.
 
